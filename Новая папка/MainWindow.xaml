@@ -1,0 +1,172 @@
+<Window x:Class="ShopSimpleWpf.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Магазин" Height="650" Width="1000"
+        MinHeight="550" MinWidth="850"
+        WindowStartupLocation="CenterScreen" Background="#F5F6F8">
+    <Grid Margin="18">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+        <Grid Margin="0,0,0,14">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
+            <TextBlock Text="Учет товаров" FontSize="25" FontWeight="SemiBold" />
+            <TextBlock x:Name="RoleTextBlock" Grid.Column="1"
+                       VerticalAlignment="Center" Foreground="#6B7280" />
+        </Grid>
+
+        <TabControl Grid.Row="1">
+            <TabItem Header="Товары">
+                <DockPanel Margin="10">
+                    <StackPanel x:Name="ProductsAdminPanel" DockPanel.Dock="Top">
+                        <WrapPanel Margin="0,0,0,8">
+                            <StackPanel Margin="0,0,10,0">
+                                <TextBlock Text="Название" />
+                                <TextBox x:Name="ProductNameBox" Width="220" />
+                            </StackPanel>
+                            <StackPanel Margin="0,0,10,0">
+                                <TextBlock Text="Цена" />
+                                <TextBox x:Name="ProductPriceBox" Width="110" />
+                            </StackPanel>
+                            <StackPanel Margin="0,0,10,0">
+                                <TextBlock Text="Количество" />
+                                <TextBox x:Name="ProductCountBox" Width="110" />
+                            </StackPanel>
+                            <StackPanel>
+                                <TextBlock Text="Категория" />
+                                <ComboBox x:Name="ProductCategoryBox" Width="190"
+                                          DisplayMemberPath="Название" SelectedValuePath="Id" />
+                            </StackPanel>
+                        </WrapPanel>
+                        <StackPanel Orientation="Horizontal" Margin="0,0,0,10">
+                            <Button Content="Добавить" Margin="0,0,8,0" Click="AddProduct_Click" />
+                            <Button Content="Изменить" Margin="0,0,8,0" Click="EditProduct_Click" />
+                            <Button Content="Удалить" Click="DeleteProduct_Click" />
+                        </StackPanel>
+                    </StackPanel>
+                    <DataGrid x:Name="ProductsGrid" IsReadOnly="True" CanUserAddRows="False"
+                              AutoGenerateColumns="True" SelectionMode="Single"
+                              SelectionChanged="ProductsGrid_SelectionChanged" />
+                </DockPanel>
+            </TabItem>
+
+            <TabItem Header="Категории">
+                <DockPanel Margin="10">
+                    <StackPanel x:Name="CategoriesAdminPanel" DockPanel.Dock="Top">
+                        <StackPanel Margin="0,0,0,8">
+                            <TextBlock Text="Название категории" />
+                            <TextBox x:Name="CategoryNameBox" Width="300" HorizontalAlignment="Left" />
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" Margin="0,0,0,10">
+                            <Button Content="Добавить" Margin="0,0,8,0" Click="AddCategory_Click" />
+                            <Button Content="Изменить" Margin="0,0,8,0" Click="EditCategory_Click" />
+                            <Button Content="Удалить" Click="DeleteCategory_Click" />
+                        </StackPanel>
+                    </StackPanel>
+                    <DataGrid x:Name="CategoriesGrid" IsReadOnly="True" CanUserAddRows="False"
+                              AutoGenerateColumns="True" SelectionMode="Single"
+                              SelectionChanged="CategoriesGrid_SelectionChanged" />
+                </DockPanel>
+            </TabItem>
+
+            <TabItem Header="Поставщики">
+                <DockPanel Margin="10">
+                    <StackPanel x:Name="SuppliersAdminPanel" DockPanel.Dock="Top">
+                        <WrapPanel Margin="0,0,0,8">
+                            <StackPanel Margin="0,0,10,0">
+                                <TextBlock Text="Название" />
+                                <TextBox x:Name="SupplierNameBox" Width="240" />
+                            </StackPanel>
+                            <StackPanel Margin="0,0,10,0">
+                                <TextBlock Text="Телефон" />
+                                <TextBox x:Name="SupplierPhoneBox" Width="170" />
+                            </StackPanel>
+                            <StackPanel>
+                                <TextBlock Text="Email" />
+                                <TextBox x:Name="SupplierEmailBox" Width="220" />
+                            </StackPanel>
+                        </WrapPanel>
+                        <StackPanel Orientation="Horizontal" Margin="0,0,0,10">
+                            <Button Content="Добавить" Margin="0,0,8,0" Click="AddSupplier_Click" />
+                            <Button Content="Изменить" Margin="0,0,8,0" Click="EditSupplier_Click" />
+                            <Button Content="Удалить" Click="DeleteSupplier_Click" />
+                        </StackPanel>
+                    </StackPanel>
+                    <DataGrid x:Name="SuppliersGrid" IsReadOnly="True" CanUserAddRows="False"
+                              AutoGenerateColumns="True" SelectionMode="Single"
+                              SelectionChanged="SuppliersGrid_SelectionChanged" />
+                </DockPanel>
+            </TabItem>
+
+            <TabItem Header="Поставки">
+                <DockPanel Margin="10">
+                    <StackPanel x:Name="SuppliesAdminPanel" DockPanel.Dock="Top">
+                        <WrapPanel Margin="0,0,0,8">
+                            <StackPanel Margin="0,0,10,0">
+                                <TextBlock Text="Товар" />
+                                <ComboBox x:Name="SupplyProductBox" Width="220"
+                                          DisplayMemberPath="Название" SelectedValuePath="Id" />
+                            </StackPanel>
+                            <StackPanel Margin="0,0,10,0">
+                                <TextBlock Text="Поставщик" />
+                                <ComboBox x:Name="SupplySupplierBox" Width="220"
+                                          DisplayMemberPath="Название" SelectedValuePath="Id" />
+                            </StackPanel>
+                            <StackPanel Margin="0,0,10,0">
+                                <TextBlock Text="Количество" />
+                                <TextBox x:Name="SupplyCountBox" Width="110" />
+                            </StackPanel>
+                            <StackPanel>
+                                <TextBlock Text="Дата" />
+                                <DatePicker x:Name="SupplyDateBox" Width="150" Height="30" />
+                            </StackPanel>
+                        </WrapPanel>
+                        <StackPanel Orientation="Horizontal" Margin="0,0,0,10">
+                            <Button Content="Добавить" Margin="0,0,8,0" Click="AddSupply_Click" />
+                            <Button Content="Изменить" Margin="0,0,8,0" Click="EditSupply_Click" />
+                            <Button Content="Удалить" Click="DeleteSupply_Click" />
+                        </StackPanel>
+                    </StackPanel>
+                    <DataGrid x:Name="SuppliesGrid" IsReadOnly="True" CanUserAddRows="False"
+                              AutoGenerateColumns="True" SelectionMode="Single"
+                              SelectionChanged="SuppliesGrid_SelectionChanged" />
+                </DockPanel>
+            </TabItem>
+
+            <TabItem Header="Продажи">
+                <DockPanel Margin="10">
+                    <StackPanel x:Name="SalesAdminPanel" DockPanel.Dock="Top">
+                        <WrapPanel Margin="0,0,0,8">
+                            <StackPanel Margin="0,0,10,0">
+                                <TextBlock Text="Товар" />
+                                <ComboBox x:Name="SaleProductBox" Width="240"
+                                          DisplayMemberPath="Название" SelectedValuePath="Id" />
+                            </StackPanel>
+                            <StackPanel Margin="0,0,10,0">
+                                <TextBlock Text="Количество" />
+                                <TextBox x:Name="SaleCountBox" Width="120" />
+                            </StackPanel>
+                            <StackPanel>
+                                <TextBlock Text="Дата" />
+                                <DatePicker x:Name="SaleDateBox" Width="150" Height="30" />
+                            </StackPanel>
+                        </WrapPanel>
+                        <StackPanel Orientation="Horizontal" Margin="0,0,0,10">
+                            <Button Content="Добавить" Margin="0,0,8,0" Click="AddSale_Click" />
+                            <Button Content="Изменить" Margin="0,0,8,0" Click="EditSale_Click" />
+                            <Button Content="Удалить" Click="DeleteSale_Click" />
+                        </StackPanel>
+                    </StackPanel>
+                    <DataGrid x:Name="SalesGrid" IsReadOnly="True" CanUserAddRows="False"
+                              AutoGenerateColumns="True" SelectionMode="Single"
+                              SelectionChanged="SalesGrid_SelectionChanged" />
+                </DockPanel>
+            </TabItem>
+        </TabControl>
+    </Grid>
+</Window>

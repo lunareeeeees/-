@@ -8,7 +8,6 @@
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <GenerateBindingRedirectsOutputType>true</GenerateBindingRedirectsOutputType>
   </PropertyGroup>
-
   <ItemGroup>
     <Reference Include="System.Configuration" />
     <PackageReference Include="Microsoft.Data.SqlClient" Version="7.0.3" />

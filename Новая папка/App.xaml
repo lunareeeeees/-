@@ -4,8 +4,8 @@
              StartupUri="LoginWindow.xaml">
     <Application.Resources>
         <Style TargetType="Button">
-            <Setter Property="Height" Value="35" />
-            <Setter Property="Padding" Value="15,0" />
+            <Setter Property="Height" Value="34" />
+            <Setter Property="Padding" Value="14,0" />
             <Setter Property="Background" Value="#3B82F6" />
             <Setter Property="Foreground" Value="White" />
             <Setter Property="BorderThickness" Value="0" />
@@ -13,8 +13,7 @@
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="Button">
-                        <Border Background="{TemplateBinding Background}"
-                                CornerRadius="3">
+                        <Border Background="{TemplateBinding Background}" CornerRadius="3">
                             <ContentPresenter HorizontalAlignment="Center"
                                               VerticalAlignment="Center"
                                               Margin="{TemplateBinding Padding}" />
@@ -22,6 +21,13 @@
                     </ControlTemplate>
                 </Setter.Value>
             </Setter>
+        </Style>
+        <Style TargetType="TextBox">
+            <Setter Property="Height" Value="30" />
+            <Setter Property="Padding" Value="5,3" />
+        </Style>
+        <Style TargetType="ComboBox">
+            <Setter Property="Height" Value="30" />
         </Style>
     </Application.Resources>
 </Application>
